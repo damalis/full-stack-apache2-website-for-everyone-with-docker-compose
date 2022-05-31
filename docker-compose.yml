@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-    html:
+    web:
         depends_on:
             - database
         image: '${PHP_IMAGE_NAME}'
@@ -17,7 +17,7 @@ services:
             - type: bind
               source: ./php-fpm/php-fpm.d/z-www.conf
               target: '${PHP_INI_DIR_PREFIX}/php-fpm.d/z-www.conf'
-        hostname: html
+        hostname: web
         restart: unless-stopped
         ports:
             - '9000:80'
@@ -32,7 +32,7 @@ services:
 
     webserver:
         depends_on:
-            - html
+            - web
         image: 'httpd:latest'
         container_name: webserver
         networks:
