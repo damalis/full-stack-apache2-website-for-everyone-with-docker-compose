@@ -8,8 +8,8 @@ if ( !$link ) {
 }
 
 //if connection is successfully you will see message below
-echo '<center>Connected successfully</center>';
-echo "<center>Host information: " . mysqli_get_host_info( $link ) . PHP_EOL . "</center>";
+echo '<center>Database connected successfully</center>';
+echo "<center>Database host information: " . mysqli_get_host_info( $link ) . PHP_EOL . "</center>";
  
 mysqli_close( $link );
 
