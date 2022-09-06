@@ -13,6 +13,15 @@ echo "<center>Database host information: " . mysqli_get_host_info( $link ) . PHP
  
 mysqli_close( $link );
 
+echo "<br>";
+
+//Connecting to Redis server on localhost 
+$redis = new Redis(); 
+$redis->connect('redis', 6379); 
+echo "<center>Connection to Redis Server sucessfully</center>"; 
+//check whether server is running or not 
+echo "<center>Server is running: " . $redis->ping('pong') . "</center>";
+
 phpinfo();
 
 ?>
