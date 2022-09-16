@@ -57,6 +57,8 @@ services:
         ports:
             - '80:80'
             - '443:443'
+        links:
+            - web
         environment:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
