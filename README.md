@@ -110,7 +110,7 @@ change example.com to your domain name in ```./phpmyadmin/apache2/sites-availabl
 Firstly: will create external volume
 
 ```
-docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-website-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
+docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-apache2-website-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
 ```
 
 ```
