@@ -34,9 +34,14 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 
 - [Auto Configuration and Installation](#automatic)
 - [Requirements](#requirements)
-- [Configuration](#configuration)
-- [Installation](#installation)
+- [Manual Configuration and Installation](#manual)
+- [Portainer Installation](#portainer)
 - [Usage](#usage)
+	- [Website](#website)
+	- [Webserver](#webserver)
+	- [Redis](#redis)
+	- [phpMyAdmin](#phpmyadmin)
+	- [backup](#backup)					  
 
 ## Automatic
 
@@ -67,7 +72,9 @@ Clone this repository or copy the files from this repository into a new folder. 
 
 Make sure to [add your user to the `docker` group](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
 
-## Configuration
+## Manual
+		 
+### Configuration
 
 download with
 
@@ -80,8 +87,6 @@ Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved an
 ```
 cd full-stack-apache2-website-for-everyone-with-docker-compose
 ```
-
-### Manual
 
 Copy the example environment into `.env`
 
@@ -103,9 +108,7 @@ cp ./phpmyadmin/apache2/sites-available/default-ssl.sample.conf ./phpmyadmin/apa
 
 change example.com to your domain name in ```./phpmyadmin/apache2/sites-available/default-ssl.conf``` file.
 
-## Installation
-
-### Manual
+### Installation
 
 Firstly: will create external volume
 
@@ -127,7 +130,7 @@ The containers are now built and running. You should be able to access the Websi
 
 For convenience you may add a new entry into your hosts file.
 
-### Installation Portainer
+## Portainer
 
 ```
 docker volume create portainer_data
@@ -172,7 +175,7 @@ To stop and remove all the containers use the `down` command:
 docker-compose down
 ```
 
-to remove portainer container and the other containers
+to remove portainer and the other containers
 ```
 docker rm -f $(docker ps -a -q)
 ```
@@ -199,21 +202,25 @@ You can now use the `up` command:
 docker-compose up -d
 ```
 
+### Docker run reference
+
+[https://docs.docker.com/engine/reference/run/](https://docs.docker.com/engine/reference/run/)
+
 ### Website
+
+You should see the "Hello World!" page in your browser. If not, please check if your PHP installation satisfies Website's requirements.
+
+```
+https://example.com
+```
 
 add or remove code in the ./php-fpm/php/conf.d/security.ini file for custom php.ini configurations
 
-Copy and paste the following code in the ./php-fpm/php-fpm.d/z-www.conf file for php-fpm configurations at 1Gb Ram Host
+[https://www.php.net/manual/en/configuration.file.php](https://www.php.net/manual/en/configuration.file.php)
 
-```
-pm.max_children = 19
-pm.start_servers = 4
-pm.min_spare_servers = 2
-pm.max_spare_servers = 4
-pm.max_requests = 1000
-```
+You should make changes custom host configurations ```./php-fpm/php-fpm.d/z-www.conf``` then must restart service, FPM uses php.ini syntax for its configuration file - php-fpm.conf, and pool configuration files.
 
-Or you should make changes custom host configurations then must restart service
+[https://www.php.net/manual/en/install.fpm.configuration.php](https://www.php.net/manual/en/install.fpm.configuration.php)
 
 ```
 docker container restart website
@@ -221,6 +228,12 @@ docker container restart website
 
 add and/or remove base website/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./website folder
 <br /><br />contains your website’s base configuration details, such as database connection information. You can set custom configuration for your website in this file.
+
+#### Webserver
+
+add or remove code in the ```./webserver/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
+
+[https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)
 
 #### Redis
 
