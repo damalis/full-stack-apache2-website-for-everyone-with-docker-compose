@@ -244,10 +244,10 @@ if [ -x "$(command -v docker)" ] && [ "$(docker compose version)" ]; then
 				if sudo [ -d "./certbot/live/$domain_name" ]; then break; fi
 			done
 			echo "Ok."
-			until [ ! -z `docker compose ps -a --filter "status=running" --services | grep webserver)` ]; do
+			until [ ! -z `docker compose ps -a --filter "status=running" --services | grep webserver` ]; do
 				echo "waiting starting webserver container"
 				sleep 2s & wait ${!}
-				if [ ! -z `docker compose ps -a --filter "status=running" --services | grep webserver)` ]; then break; fi
+				if [ ! -z `docker compose ps -a --filter "status=running" --services | grep webserver` ]; then break; fi
 			done			
 			echo ""
 			echo "Reloading webserver ssl configuration"
