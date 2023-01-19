@@ -31,7 +31,7 @@ services:
             test: ["CMD-SHELL", "curl -fk https://${DOMAIN_NAME} || exit 1"]
             interval: 10s
             timeout: 5s
-            retries: 4
+            retries: 6
             start_period: 60s
         environment:
             DB_USER: '${DB_USER}'
