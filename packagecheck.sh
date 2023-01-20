@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGES='libicu-dev gettext-base'
+PACKAGES=$1
 
 notinstall_pkgs=""
 install=false
