@@ -32,7 +32,7 @@ services:
             test: ["CMD-SHELL", "/bin/pidof php-fpm > /dev/null || exit 1"]
             interval: 5s
             timeout: 5s
-            retries: 20
+            retries: 1000
         environment:
             DB_USER: '${DB_USER}'
             DB_PASSWORD: '${DB_PASSWORD}'
@@ -205,7 +205,7 @@ services:
     varnish:
         depends_on:
             website:
-                condition: service_healthy           
+                condition: service_healthy
         image: varnish:${VARNISH_VERSION}
         container_name: varnish
         networks:
