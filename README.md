@@ -199,7 +199,7 @@ Edit the `.env` file to change values of
   </tr>
   <tr>
     <td>remotehost</td>
-    <td><code>certbot certonly --webroot --webroot-path /tmp/acme-challenge --rsa-key-size 4096 --non-interactive --agree-tos --no-eff-email --force-renewal --email ${LETSENCRYPT_EMAIL} -d ${DOMAIN_NAME} -d www.${DOMAIN_NAME} -d mail.${DOMAIN_NAME}</code></td>
+    <td><code>certbot certonly --webroot --webroot-path /tmp/acme-challenge --rsa-key-size 4096 --non-interactive --agree-tos --no-eff-email --force-renewal --email ${LETSENCRYPT_EMAIL} -d ${DOMAIN_NAME} -d www.${DOMAIN_NAME}</code></td>
   </tr>
 </tbody>
 </table>
@@ -329,7 +329,7 @@ add and/or remove base website/php-fpm themes, plugins or custom code folders an
 
 #### Webserver
 
-add or remove code in the ```./webserver/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
+add or remove code in the ```./webserver/conf/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
 
 [https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)
 
